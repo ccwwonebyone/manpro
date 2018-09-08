@@ -1,3 +1,3 @@
 # manpro
 
-## traversal 便利目录
+## traversal 遍历目录
