@@ -1,0 +1,19 @@
+{
+    "name": "ccwwonebyone/manpro",
+    "description": "常用工具(common tools/programme)",
+    "type": "tool",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "ccww onebyone",
+            "email": "ccwwonebyone@163.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Manpro\\": "src/"
+        }
+    }
+}
