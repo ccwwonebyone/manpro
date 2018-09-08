@@ -31,7 +31,7 @@ class Manpro
     /**获取Unix毫秒时间戳
      * @return float Unix毫秒时间戳
      */
-    public function unixtiem()
+    public function msectime()
     {
         list($msec, $sec) = explode(' ', microtime());
         return (int)$sec.str_pad((int)($msec*1000),3,"0",STR_PAD_LEFT);
