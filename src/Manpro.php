@@ -87,4 +87,15 @@ class Manpro
         $datearr[] = date($format,$time2);
         return array_unique($datearr);
     }
+
+    /**
+     * 将数组中的一列值作为键值
+     * @param  array $data 数组
+     * @param  string $key 键名
+     * @return array
+     */
+    public function indexArrKey($data, $key)
+    {
+        return array_combine(array_column($data, $key), $data);
+    }
 }
