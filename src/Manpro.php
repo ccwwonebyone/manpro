@@ -6,10 +6,11 @@ class Manpro
     /**
      * 遍历目录
      * @param  string $dir 目录路径
+     * @param  string $model 读取模式 full 全路径 file 仅文件
      * @param  function $fun 闭包函数
      * @return void
      */
-    public function traversal($dir, $fun)
+    public function traversal($dir, $model = 'full', $fun)
     {
         if (is_dir($dir)) {
             if ($dh = opendir($dir)) {
@@ -18,9 +19,17 @@ class Manpro
                     $next = substr($dir, -1) == '/' ? $dir . $file : $dir . '/' . $file;
                     if(is_dir($next)){
                         $this->traversal($next, $fun);
-                        $fun($next, 1);
+                        if($model == 'full'){
+                            $fun($next, 1);
+                        }else{
+                            $fun($file, 1);
+                        }
                     }else{
-                        $fun($next, 0);
+                        if($model == 'full'){
+                            $fun($next, 1);
+                        }else{
+                            $fun($file, 1);
+                        }
                     }
                 }
                 closedir($dh);
