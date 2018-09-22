@@ -17,7 +17,7 @@ class Manpro
                     if($file == '..' || $file == '.') continue;
                     $next = substr($dir, -1) == '/' ? $dir . $file : $dir . '/' . $file;
                     if(is_dir($next)){
-                        $this->traversal($dir, $fun);
+                        $this->traversal($next, $fun);
                         $fun($dir, $file, 1);
                     }else{
                         $fun($dir, $file, 2);
