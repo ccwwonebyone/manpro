@@ -1,8 +1,18 @@
 <?php
 namespace Manpro;
 
+use Manpro\Doc\Mysql;
+
 class Manpro
 {
+    protected $doc_mysql;
+
+    public function setDocMysql($config)
+    {
+        $this->doc_mysql = new Mysql($config);
+        return $this->doc_mysql;
+    }
+
     /**
      * 遍历目录
      * @param  string $dir 目录路径
