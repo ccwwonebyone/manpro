@@ -23,8 +23,11 @@ class Mysql
     public function __construct($config)
     {
         $this->config = array_merge($this->config, $config);
-        $dsn    = $this->config['driver'].':dbname='.$this->config['database'].';host='.$this->config['host'];
+        $dsn    = $this->config['driver'].':dbname='.$this->config['database'].';host='.$this->config['host'].';port='.$this->config['port'];
         $this->pdo = new \PDO($dsn, $this->config['username'], $this->config['password']);
+        $this->pdo->prepare(
+            "set names '{$this->config['charset']}' collate '{$this->config['collation']}'"
+        )->execute();
     }
 
     public function tabs()
