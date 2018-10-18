@@ -36,7 +36,7 @@ class Mysql
         return $this->pdo->query($sql)->fetchAll();
     }
 
-    public function cloumns($table)
+    public function columns($table)
     {
         $sql = 'show full columns from ' . $table;
         return $this->pdo->query($sql)->fetchAll();
@@ -62,8 +62,8 @@ class Mysql
         $content .= "```\r\n注释：{$tab['Comment']}\r\nengine：{$tab['Engine']}\r\n字符集：{$tab['Collation']}\r\n```\r\n";
         $content .= implode(' | ', $fields)."\r\n";
         $content .= implode(' | ', array_fill(0, count($fields), '---'))."\r\n";
-        $cloumns = $this->cloumns($tab['Name']);
-        foreach ($cloumns as $k => $v) {
+        $columns = $this->columns($tab['Name']);
+        foreach ($columns as $k => $v) {
             foreach ($fields as $key => $value) {
                 $temp[$key] = $v[$key];
             }
