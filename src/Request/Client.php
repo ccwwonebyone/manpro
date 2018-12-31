@@ -1,9 +1,9 @@
 <?php
 namespace Manpro\Request;
 
-class Client{
-
-    public function __construct($url,$headers=[])
+class Client
+{
+    public function __construct($url, $headers=[])
     {
         $this->ch = curl_init();
         curl_setopt($this->ch, CURLOPT_URL, $url);
@@ -44,7 +44,7 @@ class Client{
 
     public function rcExec($post_data = [])
     {
-        if($post_data){
+        if ($post_data) {
             $query = [];
             foreach ($post_data as $field => $value) {
                 $query[] = $field.'='. $value;

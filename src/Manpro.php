@@ -24,12 +24,14 @@ class Manpro
         if (is_dir($dir)) {
             if ($dh = opendir($dir)) {
                 while (($file = readdir($dh)) !== false) {
-                    if($file == '..' || $file == '.') continue;
+                    if ($file == '..' || $file == '.') {
+                        continue;
+                    }
                     $next = substr($dir, -1) == '/' ? $dir . $file : $dir . '/' . $file;
-                    if(is_dir($next)){
+                    if (is_dir($next)) {
                         $this->traversal($next, $fun);
                         $fun($dir, $file, 1);
-                    }else{
+                    } else {
                         $fun($dir, $file, 2);
                     }
                 }
@@ -44,7 +46,7 @@ class Manpro
     public function msectime()
     {
         list($msec, $sec) = explode(' ', microtime());
-        return (int)$sec.str_pad((int)($msec*1000),3,"0",STR_PAD_LEFT);
+        return (int)$sec.str_pad((int)($msec*1000), 3, "0", STR_PAD_LEFT);
     }
 
     /**
@@ -58,22 +60,30 @@ class Manpro
         $minLength = strlen(reset($areacodes));
         $searchArr = array(current($areacodes));
         foreach ($areacodes as $value) {
-            if($minLength < strlen($value)) continue;
-            if($minLength > strlen($value)){
+            if ($minLength < strlen($value)) {
+                continue;
+            }
+            if ($minLength > strlen($value)) {
                 $minLength = strlen($value);
                 $searchArr = array();
                 $searchArr[] = $value;
             }
-            if($minLength == strlen($value)) $searchArr[] = $value;
-        }
-        $searchArr = array_unique($searchArr);
-        $checkAreacode = array_diff($areacodes,$searchArr);
-        foreach ($checkAreacode as $key => $value) {
-            foreach ($searchArr as $val) {
-                if(strpos($value,$val) === 0) unset($checkAreacode[$key]);
+            if ($minLength == strlen($value)) {
+                $searchArr[] = $value;
             }
         }
-        if(!empty($checkAreacode)) $searchArr = array_merge($searchArr,$this->parseCode($checkAreacode));
+        $searchArr = array_unique($searchArr);
+        $checkAreacode = array_diff($areacodes, $searchArr);
+        foreach ($checkAreacode as $key => $value) {
+            foreach ($searchArr as $val) {
+                if (strpos($value, $val) === 0) {
+                    unset($checkAreacode[$key]);
+                }
+            }
+        }
+        if (!empty($checkAreacode)) {
+            $searchArr = array_merge($searchArr, $this->parseCode($checkAreacode));
+        }
         return $searchArr;
     }
 
@@ -90,11 +100,11 @@ class Manpro
         $time1 = strtotime($smallDate); // 自动为00:00:00 时分秒 两个时间之间的年和月份
         $time2 = strtotime($bigDate);
         $datearr = array();
-        $datearr[] = date($format,$time1);
-        while( ($time1 = strtotime($interval, $time1)) <= $time2){
-              $datearr[] = date($format,$time1); // 取得递增月;
+        $datearr[] = date($format, $time1);
+        while (($time1 = strtotime($interval, $time1)) <= $time2) {
+            $datearr[] = date($format, $time1); // 取得递增月;
         }
-        $datearr[] = date($format,$time2);
+        $datearr[] = date($format, $time2);
         return array_unique($datearr);
     }
 

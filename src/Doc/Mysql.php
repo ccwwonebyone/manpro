@@ -82,5 +82,4 @@ class Mysql
         }
         file_put_contents($file_path. $this->config['database']. '.md', $content);
     }
-
 }
