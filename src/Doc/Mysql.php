@@ -30,24 +30,42 @@ class Mysql
         )->execute();
     }
 
+    /**
+     * 获取所有表格
+     * @return array
+     */
     public function tabs()
     {
         $sql  = "show table status";
         return $this->pdo->query($sql)->fetchAll();
     }
 
+    /**
+     * 获取表格的所有字段
+     * @param  string $table 表名
+     * @return array
+     */
     public function columns($table)
     {
         $sql = 'show full columns from ' . $table;
         return $this->pdo->query($sql)->fetchAll();
     }
 
+    /**
+     * 主机中的所有数据库
+     * @return array
+     */
     public function databases()
     {
         $sql = 'show databases';
         return $this->pdo->query($sql)->fetchAll();
     }
 
+    /**
+     * 每张表生成table
+     * @param  string $tab 表名
+     * @return string
+     */
     public function docTable($tab)
     {
         $fields = [
@@ -72,6 +90,12 @@ class Mysql
         return $content;
     }
 
+    /**
+     * 生成markdown
+     *
+     * @param  string $file_path  生成路径
+     * @return void
+     */
     public function markdown($file_path = './')
     {
         $tabs = $this->tabs();

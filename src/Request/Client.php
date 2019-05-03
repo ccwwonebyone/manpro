@@ -12,37 +12,66 @@ class Client
         curl_setopt($this->ch, CURLOPT_FOLLOWLOCATION, 1);      //直接跳转重定向
     }
 
+    /**
+     * post 请求
+     * @param  array  $post_data post数据
+     * @return string
+     */
     public function post($post_data = [])
     {
         curl_setopt($this->ch, CURLOPT_POST, 1);
         return $this->rcExec($post_data);
     }
 
+    /**
+     * get 请求
+     * @return  string
+     */
     public function get()
     {
         curl_setopt($this->ch, CURLOPT_POST, 0);
         return $this->rcExec();
     }
 
+    /**
+     * put请求
+     * @param  array  $post_data 数据
+     * @return string
+     */
     public function put($post_data = [])
     {
         curl_setopt($this->ch, CURLOPT_CUSTOMREQUEST, 'PUT');
         return $this->rcExec($post_data);
     }
 
+    /**
+     * pacth
+     * @param  array  $post_data 数据
+     * @return string
+     */
     public function patch($post_data = [])
     {
         curl_setopt($this->ch, CURLOPT_CUSTOMREQUEST, 'PATCH');
         return $this->rcExec($post_data);
     }
 
+    /**
+     * delete
+     * @return string
+     */
     public function delete()
     {
         curl_setopt($this->ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
         return $this->rcExec();
     }
 
-    public function rcExec($post_data = [])
+    /**
+     * 执行curl
+     *
+     * @param  array  $post_data
+     * @return string
+     */
+    protected function rcExec($post_data = [])
     {
         if ($post_data) {
             $query = [];
