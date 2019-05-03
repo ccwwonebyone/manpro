@@ -40,7 +40,8 @@ class Manpro
         }
     }
 
-    /**获取Unix毫秒时间戳
+    /**
+     * 获取Unix毫秒时间戳
      * @return float Unix毫秒时间戳
      */
     public function msectime()
