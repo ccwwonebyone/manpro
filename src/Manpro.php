@@ -7,7 +7,7 @@ use Manpro\Request\Tool;
 
 class Manpro
 {
-    const $tool;
+    static $tool;
 
     public static function setDocMysql($config)
     {
