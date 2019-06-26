@@ -7,15 +7,17 @@ use Manpro\Request\Tool;
 
 class Manpro
 {
-    static $tool;
+    /**
+     * 容器数组
+     * @var array
+     */
+    static $containers = [];
 
     public static function setDocMysql($config)
     {
-        self::$doc_mysql = new Mysql($config);
-        return self::$doc_mysql;
+        return new Mysql($config);
     }
 
-    
     public static function request($url, $headers)
     {
         return new Client($url, $headers);
@@ -23,9 +25,9 @@ class Manpro
 
     public static function tool()
     {
-        if(!static::$tool){
-            static::$tool = new Tool();
+        if(!static::$containers['tool']){
+            static::$containers['tool'] = new Tool();
         }
-        return static::$tool;
+        return static::$containers['tool'];
     }
 }
