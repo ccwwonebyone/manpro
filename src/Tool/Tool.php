@@ -3,13 +3,14 @@ namespace Manpro\Tool;
 
 use Manpro\ManproException;
 
-class Tool {
-	 /**
-     * 遍历目录
-     * @param  string $dir 目录路径
-     * @param  function $fun 闭包函数
-     * @return void
-     */
+class Tool
+{
+    /**
+    * 遍历目录
+    * @param  string $dir 目录路径
+    * @param  function $fun 闭包函数
+    * @return void
+    */
     public function traversal($dir, $fun)
     {
         if (is_dir($dir)) {
@@ -28,8 +29,8 @@ class Tool {
                 }
                 closedir($dh);
             }
-        }else{
-        	throw new ManproException($dir.'不是目录');
+        } else {
+            throw new ManproException($dir.'不是目录');
         }
     }
 

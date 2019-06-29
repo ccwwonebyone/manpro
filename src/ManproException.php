@@ -1,6 +1,6 @@
 <?php
 namespace Manpro;
 
-class ManproException extends \Exception{
-	
+class ManproException extends \Exception
+{
 }
