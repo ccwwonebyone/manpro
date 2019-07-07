@@ -1,14 +1,5 @@
 # manpro
 
-## traversal 遍历目录
-```
-use Manpro\Manpro;
-
-$tool = Manpro::tool();
-
-$tool->traversal('./', function($dir, $file, $type){
-
-});
 ```
 
 ## 生成markdown数据库文档
