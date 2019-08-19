@@ -3,7 +3,7 @@ namespace Manpro\Tools;
 
 use Manpro\ManproException;
 
-class Time extends Tool
+class Time
 {
     /**
      * 获取Unix毫秒时间戳

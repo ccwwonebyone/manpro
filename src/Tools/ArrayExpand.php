@@ -3,7 +3,7 @@ namespace Manpro\Tools;
 
 use Manpro\ManproException;
 
-class ArrayExpand extends Tool
+class ArrayExpand
 {
     /**
     * 将数组中的一列值作为键值

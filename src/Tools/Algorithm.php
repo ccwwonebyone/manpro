@@ -3,7 +3,7 @@ namespace Manpro\Tools;
 
 use Manpro\ManproException;
 
-class Algorithm extends Tool
+class Algorithm
 {
     /**
      * 解析最小代码组

@@ -3,7 +3,7 @@ namespace Manpro\Tools;
 
 use Manpro\ManproException;
 
-class File extends Tool
+class File
 {
     /**
     * 遍历目录

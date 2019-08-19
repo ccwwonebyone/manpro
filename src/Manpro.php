@@ -3,7 +3,7 @@ namespace Manpro;
 
 use Manpro\Doc\Mysql;
 use Manpro\Request\Client;
-use Manpro\Request\Tool;
+use Manpro\Tools\Tool;
 
 class Manpro
 {
