@@ -5,5 +5,4 @@ use Manpro\ManproException;
 
 class Tool
 {
-
 }

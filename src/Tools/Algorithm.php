@@ -61,12 +61,12 @@ class Algorithm extends Tool
 
         $index_decimal = $decimal = floatval('0.'.$decimal);
         //指数位
-        if(abs($float) >= 1){
+        if (abs($float) >= 1) {
             $index = strlen($integer) - 1;
-        }else{
+        } else {
             for ($i=0; $i < 23; $i++) {
                 $index_decimal = $index_decimal*2;
-                if($index_decimal >= 1){
+                if ($index_decimal >= 1) {
                     $index = -$i-1;
                     break;
                 }
@@ -78,10 +78,10 @@ class Algorithm extends Tool
         $mantissa = abs($float) >= 1 ? $integer : '';
         while (strlen($mantissa) < 24) {
             $decimal = $decimal*2;
-            if($decimal >= 1){
+            if ($decimal >= 1) {
                 $decimal = $decimal - 1;
                 $mantissa .= '1';
-            }else{
+            } else {
                 $mantissa .= $mantissa ? '0' : '';
             }
         }

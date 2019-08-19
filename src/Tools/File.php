@@ -13,9 +13,13 @@ class File extends Tool
     */
     public function traversal($dir, $fun)
     {
-        if(!is_dir($dir)) throw new ManproException($dir.'不是目录');
+        if (!is_dir($dir)) {
+            throw new ManproException($dir.'不是目录');
+        }
         $dh = opendir($dir);
-        if(!$dh) throw new ManproException("打开$dir失败");
+        if (!$dh) {
+            throw new ManproException("打开{$dir}失败");
+        }
         while (($file = readdir($dh)) !== false) {
             if ($file == '..' || $file == '.') {
                 continue;
