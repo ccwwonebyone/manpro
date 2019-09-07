@@ -1,11 +1,14 @@
 <?php
 namespace Manpro;
 
+use ManproInstance;
 use Manpro\Doc\Mysql;
 use Manpro\Request\Client;
 
 class Manpro
 {
+    use ManproInstance;
+
     /**
      * 容器数组
      * @var array
