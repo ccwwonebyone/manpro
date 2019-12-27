@@ -19,7 +19,7 @@ class Manpro
         return new Mysql($config);
     }
 
-    public static function request($url, $headers)
+    public static function request($url, $headers = [])
     {
         return new Client($url, $headers);
     }
