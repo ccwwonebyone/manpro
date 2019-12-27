@@ -1,7 +1,6 @@
 <?php
 namespace Manpro;
 
-use ManproInstance;
 use Manpro\Doc\Mysql;
 use Manpro\Request\Client;
 
