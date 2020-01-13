@@ -4,7 +4,6 @@
 
 ## 生成markdown数据库文档
 
-```
 use Manpro\Manpro;
 
 $doc_mysql = Manpro::setDocMysql([         //设置连接数据库
