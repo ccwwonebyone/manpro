@@ -3,6 +3,9 @@ namespace Manpro\Doc;
 
 class Mysql
 {
+    /**
+     * @var array
+     */
     protected $config = [
         'driver' => 'mysql',
         'host' => '127.0.0.1',
@@ -18,6 +21,9 @@ class Mysql
         'engine' => null,
     ];
 
+    /**
+     * @var \PDO
+     */
     protected $pdo;
 
     public function __construct($config)

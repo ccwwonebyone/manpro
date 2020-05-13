@@ -1,16 +1,18 @@
 <?php
 namespace Manpro\Tools;
 
+use Closure;
 use Manpro\ManproException;
 
 class File
 {
     /**
-    * 遍历目录
-    * @param  string $dir 目录路径
-    * @param  function $fun 闭包函数
-    * @return void
-    */
+     * 遍历目录
+     * @param  string  $dir  目录路径
+     * @param  Closure  $fun  闭包函数
+     * @return void
+     * @throws ManproException
+     */
     public function traversal($dir, $fun)
     {
         if (!is_dir($dir)) {

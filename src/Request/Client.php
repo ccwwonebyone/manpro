@@ -3,6 +3,11 @@ namespace Manpro\Request;
 
 class Client
 {
+    /**
+     * @var false|resource
+     */
+    private $ch;
+
     public function __construct($url, $headers=[])
     {
         $this->ch = curl_init();
