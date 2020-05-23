@@ -1,4 +1,5 @@
 <?php
+
 namespace Manpro;
 
 trait ManproError
@@ -7,13 +8,13 @@ trait ManproError
 
     /**
      * @param $error_msg
-     * @param  null  $key
+     * @param  null|string  $key
      */
     public function setError($error_msg, $key = null)
     {
-        if($key){
+        if ($key) {
             $this->manpro_errors[$key] = $error_msg;
-        }else{
+        } else {
             $this->manpro_errors[] = $error_msg;
         }
     }
@@ -41,8 +42,8 @@ trait ManproError
      */
     public function getKeyError($key)
     {
-        if(!key_exists($key, $this->manpro_errors)){
-            throw new ManproException('here is no error key:'.$key);
+        if (!key_exists($key, $this->manpro_errors)) {
+            throw new ManproException('here is no error key: '.$key);
         }
         return $this->manpro_errors[$key];
     }
