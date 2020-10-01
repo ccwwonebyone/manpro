@@ -1,4 +1,5 @@
 <?php
+
 namespace Manpro;
 
 use Manpro\Doc\Mysql;
