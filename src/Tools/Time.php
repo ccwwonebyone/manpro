@@ -42,9 +42,9 @@ class Time
      * @param $end_date
      * @return int
      */
-    public function twoDateDays($start_date, $end_date): int
+    public function twoDateDays($startDate, $endDate): int
     {
-        return (strtotime($end_date) - strtotime($start_date)) / (24 * 60 * 60);
+        return (strtotime($endDate) - strtotime($startDate)) / (24 * 60 * 60);
     }
 
     /**
@@ -54,30 +54,30 @@ class Time
      * @param  $end_date
      * @return array
      */
-    public function getFullMonthDate($start_date, $end_date)
+    public function getFullMonthDate($startDate, $endDate)
     {
         //TODO:  获取完整月份日期
         //如果开始时间是月初，结束时间是月末
-        if ($this->isMonthStart($start_date) && $this->isMonthEnd($end_date)) {
-            return ['nature_date' => [$start_date, $end_date]];
+        if ($this->isMonthStart($startDate) && $this->isMonthEnd($endDate)) {
+            return ['nature_date' => [$startDate, $endDate]];
         }
         //如果是同一个月
-        if (!$this->isSameMoth($start_date, $end_date)) {
-            $return_date = [];
-            $next_month_start = date('Y-m-01', strtotime('+1 months', strtotime($start_date)));
-            $last_month_end = date('Y-m-t', strtotime('-1 months', strtotime($end_date)));
-            if ($next_month_start < $last_month_end) {
-                $return_date['nature_date'][] = [$next_month_start, $last_month_end];
+        if (!$this->isSameMoth($startDate, $endDate)) {
+            $returnDate = [];
+            $nextMonthStart = date('Y-m-01', strtotime('first day of +1 month', strtotime($startDate)));
+            $lastMonthEnd = date('Y-m-t', strtotime('last day of -1 month', strtotime($endDate)));
+            if ($nextMonthStart < $lastMonthEnd) {
+                $returnDate['nature_date'][] = [$nextMonthStart, $lastMonthEnd];
             }
             //如果是月初
-            if ($this->isMonthStart($start_date)) {
-                $return_date['nature_date'][] = [$start_date, $this->monthEnd($start_date)];
+            if ($this->isMonthStart($startDate)) {
+                $returnDate['nature_date'][] = [$startDate, $this->monthEnd($startDate)];
             }
             //如果是月末
-            if ($this->isMonthEnd($end_date)) {
-                $return_date['nature_date'][] = [$this->monthStart($end_date), $end_date];
+            if ($this->isMonthEnd($endDate)) {
+                $returnDate['nature_date'][] = [$this->monthStart($endDate), $endDate];
             }
-            return $return_date;
+            return $returnDate;
         }
     }
 
@@ -123,9 +123,9 @@ class Time
      * @param $end_date
      * @return bool
      */
-    public function isSameMoth($start_date, $end_date): bool
+    public function isSameMoth($startDate, $endDate): bool
     {
-        return date('Y-m', strtotime($start_date)) == date('Y-m', strtotime($end_date));
+        return date('Y-m', strtotime($startDate)) == date('Y-m', strtotime($endDate));
     }
 
     /**
@@ -146,41 +146,5 @@ class Time
     public function monthStart($date): string
     {
         return date('Y-m-01', strtotime($date));
-    }
-
-    /**
-     * @param  array $date
-     * @return \array[][]
-     */
-    public function getDateWithNature($start_date, $end_date)
-    {
-        //如果开始时间是月初，结束时间是月末
-        if ($this->isMonthStart($start_date) && $this->isMonthEnd($end_date)) {
-            return ['nature_date' => [$start_date, $end_date]];
-        }
-        //如果是同一个月
-        if ($this->isSameMoth($start_date, $end_date)) {
-            return ['date' => [$start_date, $end_date]];
-        } else {
-            $return_date = [];
-            $next_month_start = date('Y-m-01', strtotime('+1 months', strtotime($start_date)));
-            $last_month_end = date('Y-m-t', strtotime('-1 months', strtotime($end_date)));
-            if ($next_month_start < $last_month_end) {
-                $return_date['nature_date'][] = [$next_month_start, $last_month_end];
-            }
-            //如果是月初
-            if ($this->isMonthStart($start_date)) {
-                $return_date['nature_date'][] = [$start_date, $this->monthEnd($start_date)];
-            } else {
-                $return_date['date'][] = [$start_date, $this->monthEnd($start_date)];
-            }
-            //如果是月末
-            if ($this->isMonthEnd($end_date)) {
-                $return_date['nature_date'][] = [$this->monthStart($end_date), $end_date];
-            } else {
-                $return_date['date'][] = [$this->monthStart($end_date), $end_date];
-            }
-            return $return_date;
-        }
     }
 }

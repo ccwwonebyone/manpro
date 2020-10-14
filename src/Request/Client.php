@@ -1,4 +1,5 @@
 <?php
+
 namespace Manpro\Request;
 
 class Client
@@ -8,7 +9,7 @@ class Client
      */
     private $ch;
 
-    public function __construct($url, $headers=[])
+    public function __construct($url, $headers = [])
     {
         $this->ch = curl_init();
         curl_setopt($this->ch, CURLOPT_URL, $url);
@@ -19,13 +20,13 @@ class Client
 
     /**
      * post 请求
-     * @param  array  $post_data post数据
+     * @param  array  $postData post数据
      * @return string
      */
-    public function post($post_data = [])
+    public function post($postData = [])
     {
         curl_setopt($this->ch, CURLOPT_POST, 1);
-        return $this->rcExec($post_data);
+        return $this->rcExec($postData);
     }
 
     /**
@@ -40,24 +41,24 @@ class Client
 
     /**
      * put请求
-     * @param  array  $post_data 数据
+     * @param  array  $postData 数据
      * @return string
      */
-    public function put($post_data = [])
+    public function put($postData = [])
     {
         curl_setopt($this->ch, CURLOPT_CUSTOMREQUEST, 'PUT');
-        return $this->rcExec($post_data);
+        return $this->rcExec($postData);
     }
 
     /**
      * pacth
-     * @param  array  $post_data 数据
+     * @param  array  $postData 数据
      * @return string
      */
-    public function patch($post_data = [])
+    public function patch($postData = [])
     {
         curl_setopt($this->ch, CURLOPT_CUSTOMREQUEST, 'PATCH');
-        return $this->rcExec($post_data);
+        return $this->rcExec($postData);
     }
 
     /**
@@ -73,18 +74,18 @@ class Client
     /**
      * 执行curl
      *
-     * @param  array  $post_data
+     * @param  array  $postData
      * @return string
      */
-    protected function rcExec($post_data = [])
+    protected function rcExec($postData = [])
     {
-        if ($post_data) {
+        if ($postData) {
             $query = [];
-            foreach ($post_data as $field => $value) {
-                $query[] = $field.'='. $value;
+            foreach ($postData as $field => $value) {
+                $query[] = $field.'='.$value;
             }
-            $query_str = implode('&', $query);
-            curl_setopt($this->ch, CURLOPT_POSTFIELDS, $query_str);
+            $queryStr = implode('&', $query);
+            curl_setopt($this->ch, CURLOPT_POSTFIELDS, $queryStr);
         }
         return curl_exec($this->ch);
     }

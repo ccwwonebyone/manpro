@@ -2,8 +2,6 @@
 
 namespace Manpro\Tools;
 
-use Manpro\ManproException;
-
 class Algorithm
 {
     /**
@@ -12,17 +10,17 @@ class Algorithm
      * @param  array  $area_codes
      * @return array
      */
-    public function getMinArrCode($area_codes)
+    public function getMinArrCode($areaCodes)
     {
-        $minLength = strlen(reset($area_codes));
-        $searchArr = array(current($area_codes));
-        foreach ($area_codes as $value) {
+        $minLength = strlen(reset($areaCodes));
+        $searchArr = [current($areaCodes)];
+        foreach ($areaCodes as $value) {
             if ($minLength < strlen($value)) {
                 continue;
             }
             if ($minLength > strlen($value)) {
                 $minLength = strlen($value);
-                $searchArr = array();
+                $searchArr = [];
                 $searchArr[] = $value;
             }
             if ($minLength == strlen($value)) {
@@ -30,16 +28,16 @@ class Algorithm
             }
         }
         $searchArr = array_unique($searchArr);
-        $check_area_code = array_diff($area_codes, $searchArr);
-        foreach ($check_area_code as $key => $value) {
+        $checkCode = array_diff($areaCodes, $searchArr);
+        foreach ($checkCode as $key => $value) {
             foreach ($searchArr as $val) {
-                if (strpos($value, $val) === 0) {
-                    unset($check_area_code[$key]);
+                if (0 === strpos($value, $val)) {
+                    unset($checkCode[$key]);
                 }
             }
         }
-        if (!empty($check_area_code)) {
-            $searchArr = array_merge($searchArr, $this->getMinArrCode($check_area_code));
+        if (!empty($checkCode)) {
+            $searchArr = array_merge($searchArr, $this->getMinArrCode($checkCode));
         }
         return $searchArr;
     }
@@ -65,7 +63,7 @@ class Algorithm
         if (abs($float) >= 1) {
             $index = strlen($integer) - 1;
         } else {
-            for ($i = 0; $i < 23; $i++) {
+            for ($i = 0; $i < 23; ++$i) {
                 $index_decimal = $index_decimal * 2;
                 if ($index_decimal >= 1) {
                     $index = -$i - 1;
